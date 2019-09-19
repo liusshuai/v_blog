@@ -1,0 +1,36 @@
+@primary_color: #24292c;
+@page_max_width: 1200px;
+@common_box_shadow:rgba(80, 80, 80, 0.11) 0px 1px 3px 0px;
+@common_box_radius: 8px;
+
+.box_common_style(@padding: 20px) {
+  border-radius: @common_box_radius;
+  padding: @padding;
+  box-shadow: @common_box_shadow;
+  background: #fff;
+  overflow: hidden;
+}
+.page_common_style{
+  width: 853px;
+  padding-bottom: 200px;
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease-in;
+}
+
+.slide-fade-enter
+{
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+
+.glide-fade-enter-active {
+  transition: all .3s ease-in;
+}
+
+.glide-fade-enter {
+  transform: translateY(-10px);
+  opacity: 0;
+}
