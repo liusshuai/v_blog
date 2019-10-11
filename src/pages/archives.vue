@@ -88,7 +88,7 @@ export default {
         initArticles(list) {
             let _articleSubs = [];
             list.forEach(a => {
-                const date = new Date(a.pubtime);
+                const date = new Date(a.pubtime.replace(/-/g, '/'));
                 const dateStr = date.getFullYear() + '年' + (date.getMonth() + 1) + '月';
                 const i = _articleSubs.findIndex(item => item.date === dateStr);
                 

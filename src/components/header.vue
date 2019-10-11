@@ -51,6 +51,9 @@ export default {
             path: '/about'
         }];
     },
+    mounted() {
+        this.activeBar(location.pathname);
+    },
     methods: {
         onmouseover(e) {
             this.setBarPosition(e.target, 'mouse');
@@ -72,11 +75,9 @@ export default {
 
             this.$refs.activeBar.style.width = width + 'px';
             this.$refs.activeBar.style.left = left + 'px';
-        }
-    },
-    watch: {
-        $route(to) {
-            const i = this.routers.findIndex(r => r.path === to.path);
+        },
+        activeBar(path) {
+            const i = this.routers.findIndex(r => r.path === path);
             if (i > -1) {
                 this.$refs.activeBar.style.display = 'block';
                 this.setBarPosition(this.$refs.nav.children[i], 'click');
@@ -84,11 +85,16 @@ export default {
                 this.$refs.activeBar.style.display = 'none';
             }
 
-            if (to.name === 'movie') {
+            if (path === '/movie') {
                 this.type = 'dark';
             } else {
                 this.type = 'light';
             }
+        }
+    },
+    watch: {
+        $route(to) {
+            this.activeBar(to.path);
         }
     },
     components: {

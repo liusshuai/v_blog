@@ -42,7 +42,7 @@ export default {
                     const { data, total } = res.data;
                     this.total = total;
                     this.list = data.map(item => {
-                        const day = new Date(item.pubtime);
+                        const day = new Date(item.pubtime.replace(/-/g, '/'));
                         item.year = day.getFullYear();
                         item.month = day.getMonth() + 1;
                         item.date = day.getDate();
