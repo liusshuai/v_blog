@@ -3,8 +3,8 @@
         <div class="header_content">
             <div class="logo">
                 <router-link to="/">
-                    <img v-if="type === 'light'" src="../assets/images/logo_light.png" />
-                    <img v-else src="../assets/images/logo_dark.png" />
+                    <img v-if="type === 'light'" src="http://www.lsshuai.com/static/images/logo_light.png" />
+                    <img v-else src="http://www.lsshuai.com/static/images/logo_dark.png" />
                 </router-link>
             </div>
             <div class="navigation_search">
@@ -14,22 +14,19 @@
                         :key="r.path" :to="r.path">{{r.name}}</router-link>
                 </nav>
                 <span ref="activeBar" class="active_bar"></span>
-                <div class="search">
-                    <i class="icon-search icon" />
-                    <input placeholder="输入关键字查询文章..." v-model="q" @keyup.enter="search" />
-                </div>
+                <search-bar />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import SearchBar from '@/components/searchBar';
 export default {
     data() {
         return {
             positionW: 0,
             positionL: 0,
-            q: '',
             type: 'light'
         }
     },
@@ -75,10 +72,6 @@ export default {
 
             this.$refs.activeBar.style.width = width + 'px';
             this.$refs.activeBar.style.left = left + 'px';
-        },
-        search() {
-            this.$route.path !== '/archive' &&
-                this.$router.push(`/archives?type=search&q=${this.q}`)
         }
     },
     watch: {
@@ -97,6 +90,9 @@ export default {
                 this.type = 'light';
             }
         }
+    },
+    components: {
+        SearchBar
     }
 }
 </script>
@@ -158,29 +154,6 @@ export default {
     }
     .router-link-exact-active{
         color: @primary_color;
-    }
-}
-.search{
-    position: relative;
-    margin-left: 23px;
-    input{
-        outline: none;
-        font-size: 12px;
-        width: 226px;
-        height: 28px;
-        border: 1px solid @primary_color;
-        border-radius: 14px;
-        padding-left: 22px;
-    }
-    .icon{
-        display: inline-block;
-        position: absolute;
-        top: 50%;
-        left: 4px;
-        width: 18px;
-        height: 18px;
-        margin-top: -9px;
-        font-size: 18px;
     }
 }
 .active_bar{

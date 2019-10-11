@@ -149,4 +149,11 @@ export default {
     transform: translateY(0);
   }
 }
+
+@media screen and (max-width: 768px) {
+    .follow_box{
+        width: 320px;
+        margin-left: -160px; 
+    }
+}
 </style>

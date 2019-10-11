@@ -107,6 +107,10 @@ html {
     height: 100%;
 }
 
+/* html,body{
+    font-size: 16px;
+} */
+
 body {
     min-width: 1240px;
     font-family: Lato, "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -114,7 +118,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #24292c;
     background: #f9fafa;
-    
+}
+
+@media screen and (max-width: 768px) {
+    body{
+        min-width: 300px;
+    }
 }
 
 ul {

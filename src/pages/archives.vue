@@ -260,4 +260,33 @@ export default {
   transform: translateY(10px);
   opacity: 0;
 }
+
+@media screen and (max-width: 768px) {
+    .archive_main{
+        display: block;
+    }
+
+    .sorl_filter{
+        width: 100%;
+        border-right: none;
+    }
+    .tags_title{
+        margin-top: 20px;
+    }
+    .article_list{
+        padding: 0;
+        margin-top: 30px;
+    }
+    .pub_time{
+        font-size: 13px;
+    }
+    .title_list{
+        li{
+            height: 36px;
+            line-height: 36px;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+    }
+}
 </style>

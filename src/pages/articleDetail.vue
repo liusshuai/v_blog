@@ -1,6 +1,6 @@
 <template>
     <div class="article_detail_page">
-        <div>
+        <div class="info_box_wrap">
             <info-box />
         </div>
         <transition name="slide-fade">
@@ -8,7 +8,7 @@
                 <div class="article_main">
                     <h1 class="article_title">{{data.title || '文章不存在'}}</h1>
                     <div class="article_detail_base_info">
-                        <span><i class="icon-create" /><em> {{data.createtime}}</em></span>
+                        <span class="create_time"><i class="icon-create" /><em> {{data.createtime}}</em></span>
                         <span><i class="icon-update" /><em> {{data.pubtime}}</em></span>
                         <span class="archive" v-show="data.channel"
                             @click="goChannel(data.channel.id)">#{{data.channel ? data.channel.name : ''}}#</span>
@@ -326,5 +326,27 @@ export default {
 }
 .article_comment_box{
     .box_common_style;
+}
+
+@media screen and (max-width: 768px) {
+    .info_box_wrap{
+        display: none;
+    }
+    .article_detail_wrap{
+        width: 100%;
+    }
+    .article_main,
+    .article_comment_box{
+        padding: 10px 12px;
+    }
+    .article_detail_base_info{
+        margin-bottom: 20px;
+        .create_time{
+            display: none;
+        }
+    }
+    .article_content{
+        padding-bottom: 0;
+    }
 }
 </style>

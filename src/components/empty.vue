@@ -1,6 +1,6 @@
 <template>
     <div class="empty_wrap">
-        <img src="../assets/images/want-empty.png" />
+        <div class="empty_image_box"></div>
         <p>💔 {{text}}</p>
     </div>
 </template>
@@ -29,5 +29,14 @@ export default {
         color: #cccccc;
         margin-top: 4px;
     }
+}
+.empty_image_box{
+    width: 100px;
+    height: 100px;
+    background: url('../assets/images/want-empty.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
 }
 </style>

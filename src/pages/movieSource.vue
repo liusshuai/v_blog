@@ -154,4 +154,37 @@ export default {
   transform: translateY(-10px);
   opacity: 0;
 }
+
+@media screen and (max-width: 768px) {
+    .source_wrap{
+        padding: 10px;
+    }
+    .search_box{
+        width: 300px;
+        height: 30px;
+        margin: 0 auto;
+        margin-top: 30px;
+        border-radius: 15px;
+        padding: 0 10px;
+        font-size: 14px;
+        span{
+            margin-left: 6px;
+        }
+    }
+    .intro{
+        margin: 20px 0;
+    }
+
+    .source_list{
+        li{
+            width: 50%;
+            padding: 0 6px;
+            margin-bottom: 12px;
+        }
+    }
+
+    .source_item_wrap{
+        height: 250px;
+    }
+}
 </style>

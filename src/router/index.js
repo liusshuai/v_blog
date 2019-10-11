@@ -3,59 +3,23 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const Home = (resolve) => {
-    import('../pages/home').then((module) => {
-        resolve(module);
-    });
-};
+const Home = () => import('../pages/home');
 
-const Bibi = (resolve) => {
-    import('../pages/bibi').then((module) => {
-        resolve(module);
-    });
-};
+const Bibi = () => import('../pages/bibi');
 
-const Archive = (resolve) => {
-    import('../pages/archives').then((module) => {
-        resolve(module);
-    });
-};
+const Archive = () => import('../pages/archives');
 
-const MessageBoard = (resolve) => {
-    import('../pages/messageBoard').then((module) => {
-        resolve(module);
-    });
-};
+const MessageBoard = () => import('../pages/messageBoard');
 
-const About = (resolve) => {
-    import('../pages/about').then((module) => {
-        resolve(module);
-    });
-};
+const About = () => import('../pages/about');
 
-const ArticleDetail = (resolve) => {
-    import('../pages/articleDetail').then((module) => {
-        resolve(module);
-    });
-};
+const ArticleDetail = () => import('../pages/articleDetail');
 
-const BibiDetail = (resolve) => {
-    import('../pages/bibiDetail').then((module) => {
-        resolve(module);
-    });
-};
+const BibiDetail = () => import('../pages/bibiDetail');
 
-const MovieSource = (resolve) => {
-    import('../pages/movieSource').then((module) => {
-        resolve(module);
-    });
-};
+const MovieSource = () => import('../pages/movieSource');
 
-const MovieSourceDetail = (resolve) => {
-    import('../pages/movieSourceDetail').then((module) => {
-        resolve(module);
-    });
-};
+const MovieSourceDetail = () => import('../pages/movieSourceDetail');
 
 export default new Router({
     mode: 'history',

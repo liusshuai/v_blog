@@ -10,6 +10,7 @@
                 <bibi-box :data="item" />
             </li>
             </transition-group>
+            <empty v-if="!list.length" text="还没有新行博" />
         </ul>
         <div class="get_more_btn" v-show="total > list.length">
             <more-btn text="加载更多" />
@@ -100,5 +101,20 @@ export default {
 .get_more_btn{
     margin-top: 20px;
     text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .bibi_wrap{
+        width: 100%;
+    }
+    .img_cover{
+        border-radius: 0;
+        margin-top: -10px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .bibi_box{
+        padding: 10px;
+    }
 }
 </style>

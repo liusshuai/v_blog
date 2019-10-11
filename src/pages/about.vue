@@ -1,6 +1,6 @@
 <template>
 <div class="about_page_wrap">
-    <div>
+    <div class="info_box_wrap">
         <info-box />
     </div>
     <transition name="slide-fade">
@@ -21,7 +21,7 @@
                         <h2>广州旗风堂信息科技有限公司<span class="work_date">(2017.5 - 2017.11)</span></h2>
                         <p class="work_post">web前端开发</p>
                         <ul class="work_list">
-                            <li>vivi公司618、818、教师节活动页面</li>
+                            <li>vivo公司618、818、教师节活动页面</li>
                             <li>温碧泉活动页面</li>
                             <li>微信读书的小程序开发及维护</li>
                         </ul>
@@ -141,6 +141,27 @@ export default {
     span{
         display: inline-block;
         width: 150px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about_page_wrap{
+        display: block;
+    }
+    .info_box_wrap{
+        display: none;
+    }
+    .about_wrap{
+        width: 100%;
+    }
+    .other_info{
+        font-size: 13px;
+        p{
+            margin-top: 13px;
+        }
+        span{
+            width: 80px;
+        }
     }
 }
 </style>

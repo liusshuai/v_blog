@@ -142,4 +142,10 @@ export default {
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .bibi_detail_wrap{
+        width: 100%;
+    }
+}
 </style>

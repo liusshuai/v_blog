@@ -29,5 +29,6 @@ export default {
     font-size: 14px;
     cursor: pointer;
     outline: none;
+    background: transparent;
 }
 </style>

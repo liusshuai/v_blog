@@ -5,7 +5,8 @@
                 <span class="user_name">{{item.username}}</span>
                 <span class="block" v-show="item.replyname">回复了</span>
                 <span class="user_name" v-show="item.replyname">{{item.replyname}}</span>：
-                <span class="content">{{item.content}}</span>({{item.pubtime}})
+                <span class="content">{{item.content}}</span>
+                <span class="pubtime">({{item.pubtime}})</span>
             </div>
             <span class="answer_btn" @click="quto(item)">回复</span>
         </li>
@@ -60,5 +61,11 @@ export default {
     display: inline-block;
     color: @primary_color;
     margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .pubtime{
+        display: none;
+    }
 }
 </style>

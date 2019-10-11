@@ -129,4 +129,19 @@ export default {
     text-align: center;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .board_list{
+        li{
+            padding: 10px 0 11px;
+        }
+    }
+    .content{
+        font-size: 14px;
+        padding: 10px 10px 10px 0;
+    }
+    .base_info > .quto_btn{
+        display: inline-block;
+    }
+}
 </style>

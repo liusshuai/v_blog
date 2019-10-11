@@ -2,7 +2,7 @@
     <div class="article_wrap">
         <h1 class="title">{{data.title}}</h1>
         <div class="base_info">
-            <div class="time">
+            <div class="time create_time">
                 <i class="icon-create" /> 
                 <span>{{data.createtime}}</span>
             </div>
@@ -88,6 +88,7 @@ export default {
     }
     .tag{
         margin-right: 21px;
+        white-space: nowrap;
         cursor: pointer;
     }
 }
@@ -102,6 +103,33 @@ export default {
     span{
         display: inline-block;
         margin-right: 21px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .article_wrap{
+        padding: 20px 0;
+    }
+    .create_time{
+        display: none;
+    }
+    .title{
+        font-size: 18px;
+        font-weight: 550;
+        margin-bottom: 10px;
+    }
+    .desc{
+        font-size: 15px;
+        margin: 16px 0;
+    }
+    .tag_list{
+        width: 50%;
+        overflow: hidden;
+    }
+    .data_info{
+        .tag{
+            margin-right: 10px;
+        }
     }
 }
 </style>

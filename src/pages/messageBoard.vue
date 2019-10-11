@@ -1,6 +1,6 @@
 <template>
     <div class="board_page_wrap">
-        <div>
+        <div class="info_box_wrap">
             <info-box />
         </div>
         <transition name="slide-fade">
@@ -104,5 +104,17 @@ export default {
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
     margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .board_page_wrap{
+        display: block;
+    }
+    .info_box_wrap{
+        display: none;
+    }
+    .board_wrap{
+        width: 100%;
+    }
 }
 </style>

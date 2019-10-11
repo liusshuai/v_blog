@@ -1,53 +1,27 @@
 <template>
     <div class="info_box_wrap">
-        <div class="avatar">
-            <img src="../assets/images/avatar.jpg" />
-        </div>
+        <div class="avatar"></div>
         <h3 class="name">{{userInfo.nickname}}</h3>
         <div class="github">
             <i class="icon-github" />
-            <a href="https://github.com/liusshuai">https://github.com/liusshuai</a>
+            <a href="https://github.com/liusshuai" target="_blank">https://github.com/liusshuai</a>
         </div>
-        <div class="follow_btn" @click="follow"><i class="icon-follow"></i> 订阅我</div>
+        <follow-btn @followCallback="followCallback" />
         <div class="data_info">
             <span>文章：<em>{{userInfo.articlecount}}</em></span>
             <span>留言：<em>{{userInfo.commentCount}}</em></span>
             <span>订阅：<em>{{userInfo.followers}}</em></span>
         </div>
-
-        <follow-me-modal :visible="showFollow" @close="closeFollow"
-            @followSuccess="followCallback" />
     </div>
 </template>
 
 <script>
-import FollowMeModal from '@/components/followMeModal';
-import {mapGetters} from 'vuex';
+import FollowBtn from '@/components/followBtn';
+import { userInfoMixin } from '@/util/mixin';
 export default {
-    data () {
-        return {
-            showFollow: false
-        };
-    },
-    computed: {
-      ...mapGetters([
-        'userInfo'
-      ])
-    },
-    methods: {
-        follow() {
-            this.showFollow = true;
-        },
-        closeFollow() {
-            this.showFollow = false;
-        },
-        followCallback() {
-            this.data.followers += 1;
-            this.closeFollow(); 
-        }
-    },
+    mixins: [userInfoMixin],
     components: {
-        FollowMeModal
+        FollowBtn
     }
 }
 </script>
@@ -64,8 +38,10 @@ export default {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    overflow: hidden;
-    img{ width: 100%; }
+    background: url('../assets/images/avatar.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .avatar,
 .follow_btn{
@@ -79,18 +55,6 @@ export default {
 .base_info{
     display: flex;
     align-items: center;
-}
-.follow_btn{
-    width: 100px;
-    height: 32px;
-    color: #fff;
-    line-height: 32px;
-    text-align: center;
-    border-radius: 32px;
-    background: @primary_color;
-    cursor: pointer;
-    margin-top: 16px; 
-    margin-bottom: 16px;
 }
 .data_info{
     display: flex;

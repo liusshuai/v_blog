@@ -120,9 +120,6 @@ export default {
     width: 200px;
     margin-right: 20px;
     flex-shrink: 0;
-    img{
-        width: 100%;
-    }
 }
 .source_info{
     display: flex;
@@ -143,5 +140,26 @@ export default {
 .comment_box{
     margin-top: 20px;
     border-top: 1px solid #eee;
+}
+
+@media screen and (max-width: 768px) {
+    .source_detail_wrap{
+        width: 100%;
+        padding: 10px;
+    }
+    .source_info{
+        display: block;
+        margin-bottom: 20px;
+    }
+    .title{
+        font-size: 20px;
+        margin: 10px 0 20px;
+    }
+    .base_info p{
+        font-size: 14px;
+    }
+    .source_cover{
+        margin: 0 auto;
+    }
 }
 </style>

@@ -195,4 +195,12 @@ export default {
   opacity: 0;
   height: 0;
 }
+
+@media screen and (max-width: 768px) {
+    .template_box_wrap{
+        textarea{
+            width: 100%;
+        }
+    }
+}
 </style>

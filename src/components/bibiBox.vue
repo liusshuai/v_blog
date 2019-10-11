@@ -105,4 +105,50 @@ export default {
         margin-right: 25px;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .bibi_box_wrap{
+        padding: 6px;
+    }
+    .bibi_side{
+        width: 50px;
+    }
+    .bibi_pub_date{
+        border-width: 2px;
+        height: 44px;
+        width: 44px;
+        .day{
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .month{
+            font-size: 12px;
+        }
+    }
+
+    .bibi_pub_year{
+        margin-top: 2px;
+        font-size: 12px;
+    }
+    .bibi_main{
+        margin-left: 10px;
+    }
+    .bibi_img{
+        width: 100%;
+    }
+    .bibi_content{
+        padding: 0;
+        line-height: 20px;
+        font-size: 14px;
+    }
+    .bibi_tags{
+        margin-top: 4px;
+        span{
+            font-size: 12px;
+        }
+    }
+    .bibi_handler{
+        margin-top: 6px;
+    }
+}
 </style>

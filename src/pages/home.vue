@@ -1,6 +1,6 @@
 <template>
     <div class="home_page_wrap">
-        <div>
+        <div class="info_box_wrap">
             <info-box />
         </div>
         <transition name="slide-fade">
@@ -9,11 +9,12 @@
                     <skeleton v-if="loading" />
                     <ul class="article_list" v-else>
                         <transition-group name="glide-fade">
-                        <li v-for="item in list" :key="item.id">
-                            <article-box :data="item" />
-                        </li>
+                            <li v-for="item in list" :key="item.id">
+                                <article-box :data="item" />
+                            </li>
                         </transition-group>
                     </ul>
+                    <empty v-if="!list.length" text="还没有发布文章" />
                 </div>
                 <div class="pagination_box">
                     <pagination :curPage="page" :total="total" 
@@ -29,6 +30,7 @@ import ArticleBox from '@/components/articleBox';
 import Pagination from '@/components/pagination';
 import Skeleton from '@/components/skeleton';
 import InfoBox from '@/components/infoBox';
+import Empty from '@/components/empty';
 import { getArticles } from '@/api/article';
 export default {
     name: 'home',
@@ -83,7 +85,8 @@ export default {
         ArticleBox,
         Pagination,
         Skeleton,
-        InfoBox
+        InfoBox,
+        Empty
     }    
 }
 </script>
@@ -108,5 +111,17 @@ export default {
 }
 .pagination_box{
     text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .home_page_wrap{
+        display: block;
+    }
+    .info_box_wrap{
+        display: none;
+    }
+    .home_page_main{
+        width: 100%;
+    }
 }
 </style>
