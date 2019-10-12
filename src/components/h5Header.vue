@@ -157,7 +157,7 @@ export default {
     width: 80px;
     height: 80px;
     border-radius: 40px;
-    background: url('../assets/images/avatar.jpg');
+    background: url('http://www.lsshuai.com/static/images/avatar.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

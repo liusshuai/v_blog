@@ -2,7 +2,7 @@
     <div class="bibi_wrap">
         <div class="img_cover">
             <h2 class="title">够钟</h2>
-            <p>何事落到这收场，枯死在你的手上，风花月似戏一场，遗容任你瞻仰。</p>
+            <p>其实你认识的大部分人，你们已经见过最后一面了。</p>
         </div>
         <ul>
             <transition-group name="glide-fade">
@@ -80,8 +80,8 @@ export default {
     color: #fff;
     width: 100%;
     height: 350px;
-    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567782156665&di=72aabd71106b15f3af970d15a28d4a00&imgtype=0&src=http%3A%2F%2Fd.5857.com%2Fzb_161130%2F002.jpg');
-    background-repeat: no-repeat;
+    background: url('http://www.lsshuai.com/static/images/bibibg.jpg') center bottom;
+    // background-repeat: no-repeat;
     background-size: cover;
     padding-top: 133px;
     text-align: center;
@@ -90,7 +90,7 @@ export default {
         font-size: 30px;
     }
     p{
-        font-size: 15px;
+        font-size: 17px;
         margin-top: 20px;
     }
 }

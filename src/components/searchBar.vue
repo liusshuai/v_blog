@@ -1,7 +1,7 @@
 <template>
     <div class="search_bar_wrap">
         <i class="icon-search icon" />
-        <input placeholder="输入关键字查询文章..." v-model="q" @keyup.enter="search" />
+        <input type="search" placeholder="输入关键字查询文章..." v-model="q" @keyup.enter="search" />
     </div>
 </template>
 

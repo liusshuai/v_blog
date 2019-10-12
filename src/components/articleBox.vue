@@ -55,6 +55,7 @@ export default {
 }
 .title{
     font-size: 23px;
+    font-weight: normal;
     margin-bottom: 13px;
 }
 .base_info{
@@ -115,7 +116,7 @@ export default {
     }
     .title{
         font-size: 18px;
-        font-weight: 550;
+        font-weight: 500;
         margin-bottom: 10px;
     }
     .desc{

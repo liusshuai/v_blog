@@ -5,7 +5,7 @@
         </div>
         <transition name="slide-fade">
             <div class="board_wrap" v-show="!loading">
-                <h3 class="board_title" id="comment"><i class="icon-board" /> 留言板({{total}})</h3>
+                <div class="board_title" id="comment"><i class="icon-board" /> 留言板({{total}})</div>
                 <mess-list v-if="mess.length" :data="mess" :total="total"
                     @quto="replyComment" @getMore="getMoreMess" />
                 <empty v-else text="仲有冇留言，你嚟抢梳化啦！" />
@@ -44,6 +44,7 @@ export default {
             }).then(res => {
                 if (res.code === 200) {
                     const { list, total } = res.data;
+
                     this.mess = this.mess.concat(list);
                     this.total = total;
                 }

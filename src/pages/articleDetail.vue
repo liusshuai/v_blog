@@ -193,7 +193,6 @@ export default {
 
 <style lang="less" scoped>
 @import '../assets/style/common.less';
-@import '../assets/style/markdown.less';
 .article_detail_page{
     display: flex;
     justify-content: space-between;
@@ -208,6 +207,7 @@ export default {
 .article_title{
     font-size: 28px;
     margin-bottom: 10px;
+    font-weight: normal;
 }
 .article_detail_base_info{
     display: flex;

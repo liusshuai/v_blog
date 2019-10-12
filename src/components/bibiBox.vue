@@ -11,7 +11,7 @@
             <div class="bibi_img">
                 <img v-if="data.imgs && data.imgs[0]" :src="data.imgs[0].src" />
             </div>
-            <p class="bibi_content">{{data.content || '该条行博不存在或被删除'}}</p>
+            <pre class="bibi_content">{{data.content || '该条行博不存在或被删除'}}</pre>
             <div class="bibi_tags">
                 <span v-for="tag in data.tags" :key="tag">#{{tag}}#</span>
             </div>
@@ -57,6 +57,9 @@ export default {
     font-weight: 600;
 }
 .bibi_pub_date{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border: 3px solid #828d95;
     border-radius: 100%;
     height: 74px;
@@ -64,8 +67,11 @@ export default {
     margin: 0 auto;
     cursor: default;
     color: #828d95;
+    p{
+        line-height: 1;
+    }
     .day{
-        // margin-top: 4px;
+        margin-bottom: 4px;
         font-size: 30px;
     }
     .month{
@@ -82,6 +88,7 @@ export default {
     font-size: 15px;
     color: #737373;
     line-height: 24px;
+    white-space: pre-wrap;
 }
 .bibi_img{
     display: block;

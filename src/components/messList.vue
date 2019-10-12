@@ -21,7 +21,7 @@
                     <pre>引用 {{item.replyname}} 的发言</pre>
                     {{item.replycontent}}
                 </blockquote>
-                <p class="content_origin">{{item.content}}</p>
+                <pre class="content_origin">{{item.content}}</pre>
             </div>
         </li>
     </ul>
@@ -129,7 +129,13 @@ export default {
     text-align: center;
     cursor: pointer;
 }
-
+.content_origin{
+    display: block;
+    white-space: pre-wrap;
+    width: 100%;
+    font-size: 15px;
+    line-height: 22px;
+}
 @media screen and (max-width: 768px) {
     .board_list{
         li{
