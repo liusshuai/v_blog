@@ -3,3 +3,12 @@ export function checkEmail(email) {
 
     return emailReg.test(email);
 }
+
+export function safeHtml(a) { //转译html代码
+    var s = "";
+    for (var i = 0; i < a.length; i++) {
+        var arg = String(a);
+        s = arg.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    return s;
+}

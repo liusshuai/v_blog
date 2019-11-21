@@ -2,10 +2,6 @@
     <div class="info_box_wrap">
         <div class="avatar"></div>
         <h3 class="name">{{userInfo.nickname}}</h3>
-        <div class="github">
-            <i class="icon-github" />
-            <a href="https://github.com/liusshuai" target="_blank">https://github.com/liusshuai</a>
-        </div>
         <follow-btn @followCallback="followCallback" />
         <div class="data_info">
             <span>文章：<em>{{userInfo.articlecount}}</em></span>

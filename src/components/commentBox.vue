@@ -22,13 +22,14 @@
         </transition>
         <error-mess :text="errorText" />
         <div class="send_btn">
-            <button @click="comment" type="button">评论</button> 💋
+            <emijoy v-show="showemoji" @chooseEmoji="getEmoji"/><button @click="comment" type="button">评论</button>
         </div>
     </div>
 </template>
 
 <script>
 import ErrorMess from '@/components/errorMess';
+import Emijoy from '@/components/emijoy';
 import { checkEmail } from '@/util/util';
 export default {
     data () {
@@ -54,6 +55,10 @@ export default {
         placeholder: {
             type: String,
             default: ''
+        },
+        showemoji: {
+            type: Boolean,
+            default: true
         }
     },
     mounted() {
@@ -123,10 +128,14 @@ export default {
         },
         toggleForm() {
             this.showForm = !this.showForm;
+        },
+        getEmoji(code) {
+            this.content += ` ${code} `;
         }
     },
     components: {
-        ErrorMess
+        ErrorMess,
+        Emijoy
     }
 }
 </script>
@@ -142,7 +151,8 @@ export default {
 .template_box_wrap{
     margin-top: 20px;
     h3{
-        margin: 12px 0;
+        margin: 12px 0 6px;
+        font-weight: 500;
     }
     textarea{
         width: 500px;
@@ -176,6 +186,7 @@ export default {
     color: #aaa;
 }
 .send_btn{
+    display: flex;
     button{
         font-size: 14px;
         padding: 5px 40px;

@@ -21,7 +21,7 @@
                     <pre>引用 {{item.replyname}} 的发言</pre>
                     {{item.replycontent}}
                 </blockquote>
-                <pre class="content_origin">{{item.content}}</pre>
+                <pre class="content_origin" v-html="parseContent(item.content)"></pre>
             </div>
         </li>
     </ul>
@@ -33,6 +33,8 @@
 
 <script>
 import MoreBtn from '@/components/lButton';
+import emojis from '@/assets/js/emoji.js';
+import { safeHtml } from '@/util/util.js';
 export default {
     props: {
         data: {
@@ -56,6 +58,34 @@ export default {
         },
         handleGetMore() {
             this.$emit('getMore');
+        },
+        parseContent(str) {
+            let regex = /\[\/(.+?)\]/g;
+            let emojiArr = str.match(regex);
+
+            str = safeHtml(str);
+
+            if (emojiArr) {
+                let emojiImgList = [];
+
+                emojiArr.forEach(e => {
+                    const index = emojis.findIndex(item => item.index === e);   
+                    if (index > -1) {
+                        emojiImgList.push(emojis[index].src);
+                    } else {
+                        emojiImgList.push(e);
+                    }
+                });
+
+                emojiArr.forEach((e, index) => {
+                    let regex = /\[\/(.+?)\]/;
+                    if (!regex.test(emojiImgList[index])) {
+                        str = str.replace(e, `<img style="width: 100px; height: 100px;" src=${emojiImgList[index]} />`);
+                    }
+                });
+            }
+            
+            return str;    
         }
     },
     components: {
@@ -116,7 +146,7 @@ export default {
     color: #aaa;
     margin-bottom: 0;
     span{
-        display: inline-block;
+        // display: inline-block;
         margin-left: 10px;
     }
     .quto_btn{
@@ -130,9 +160,7 @@ export default {
     cursor: pointer;
 }
 .content_origin{
-    display: block;
     white-space: pre-wrap;
-    width: 100%;
     font-size: 15px;
     line-height: 22px;
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="article_wrap">
-        <h1 class="title">{{data.title}}</h1>
+        <h1 class="title"><router-link :to="'/article/' + data.id">{{data.title}}</router-link></h1>
         <div class="base_info">
             <div class="time create_time">
                 <i class="icon-create" /> 
@@ -57,6 +57,9 @@ export default {
     font-size: 23px;
     font-weight: normal;
     margin-bottom: 13px;
+    a{
+        color: #333;
+    }
 }
 .base_info{
     display: flex;

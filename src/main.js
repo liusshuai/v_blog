@@ -5,6 +5,9 @@ import store from './store';
 
 import '@/assets/style/icon.css';
 
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad);
+
 Vue.config.productionTip = false;
 
 new Vue({

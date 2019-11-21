@@ -5,7 +5,7 @@
             <div>
                 <div class="base_line"></div>
                 <div class="comment_box" id="comment">
-                    <comment-box :total="total" @comment="commentBibi"
+                    <comment-box :total="total" @comment="commentBibi" :showemoji="false"
                         :placeholder="commentText" @cancel="clearReply" />
                     <bibi-comments :data="comments" @quto="replyComment" />
                     <p class="get_more_btn" v-show="total > comments.length">

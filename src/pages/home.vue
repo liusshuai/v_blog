@@ -2,6 +2,7 @@
     <div class="home_page_wrap">
         <div class="info_box_wrap">
             <info-box />
+            <social-box />
         </div>
         <transition name="slide-fade">
             <div v-show="!loading">
@@ -30,6 +31,7 @@ import ArticleBox from '@/components/articleBox';
 import Pagination from '@/components/pagination';
 import Skeleton from '@/components/skeleton';
 import InfoBox from '@/components/infoBox';
+import SocialBox from '@/components/socialBox';
 import Empty from '@/components/empty';
 import { getArticles } from '@/api/article';
 export default {
@@ -86,6 +88,7 @@ export default {
         Pagination,
         Skeleton,
         InfoBox,
+        SocialBox,
         Empty
     }    
 }

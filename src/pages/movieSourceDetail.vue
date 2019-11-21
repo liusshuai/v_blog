@@ -130,6 +130,9 @@ export default {
     font-weight: bold;
     margin-bottom: 30px;
 }
+.content_box{
+    margin-top: 20px;
+}
 .desc{
     font-size: 14px;
     margin-top: 20px;

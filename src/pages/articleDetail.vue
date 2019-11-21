@@ -2,6 +2,7 @@
     <div class="article_detail_page">
         <div class="info_box_wrap">
             <info-box />
+            <social-box />
         </div>
         <transition name="slide-fade">
             <div class="article_detail_wrap" v-show="!loading">
@@ -59,6 +60,7 @@ import CommentBox from '@/components/commentBox';
 import MessList from '@/components/messList';
 import MdToHtml from '@/components/mdToHtml';
 import InfoBox from '@/components/infoBox';
+import SocialBox from '@/components/socialBox';
 import { getArticleDetail, getNear, likeArticle } from '@/api/article';
 import { getCommentByArticle, addComment } from '@/api/comment';
 export default {
@@ -100,6 +102,10 @@ export default {
             getArticleDetail(this.id).then(res => {
                 if (res.code === 200) {
                     this.data = res.data;
+                    document.title = res.data.title;
+                    document.getElementById('description').content = res.data.desc;
+                } else {
+                    document.title = '文章不存在';
                 }
 
                 this.loading = false;
@@ -186,7 +192,8 @@ export default {
         CommentBox,
         MessList,
         MdToHtml,
-        InfoBox
+        InfoBox,
+        SocialBox
     }
 }
 </script>

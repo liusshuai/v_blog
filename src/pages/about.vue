@@ -2,6 +2,7 @@
 <div class="about_page_wrap">
     <div class="info_box_wrap">
         <info-box />
+        <social-box />
     </div>
     <transition name="slide-fade">
         <div class="about_wrap" v-show="!loading">
@@ -54,6 +55,7 @@
 
 <script>
 import InfoBox from '@/components/infoBox';
+import SocialBox from '@/components/socialBox';
 export default {
     data() {
         return {
@@ -64,7 +66,8 @@ export default {
         this.loading = false;
     },
     components: {
-        InfoBox
+        InfoBox,
+        SocialBox
     }
 }
 </script>

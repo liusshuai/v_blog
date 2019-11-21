@@ -3,6 +3,8 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
+const Index = () => import('../pages/index');
+
 const Home = () => import('../pages/home');
 
 const Bibi = () => import('../pages/bibi');
@@ -21,6 +23,10 @@ const MovieSource = () => import('../pages/movieSource');
 
 const MovieSourceDetail = () => import('../pages/movieSourceDetail');
 
+const ArticleDetailH5 = () => import('../h5/article');
+
+const MovieDetailH5 = () => import('../h5/movie');
+
 export default new Router({
     mode: 'history',
     routes: [{
@@ -29,53 +35,73 @@ export default new Router({
         },
         {
             path: '/',
-            name: 'home',
-            component: Home
+            component: Index,
+            children: [
+                {
+                    path: '/',
+                    name: 'home',
+                    component: Home
+                },
+                {
+                    path: '/bibi',
+                    name: 'bibi',
+                    component: Bibi
+                },
+                {
+                    path: '/bibi/:id',
+                    name: 'bibiDetail',
+                    component: BibiDetail
+                },
+                {
+                    path: '/betail',
+                    name: 'betail',
+                    component: BibiDetail
+                },
+                {
+                    path: '/archives',
+                    name: 'archives',
+                    component: Archive
+                },
+                {
+                    path: '/board',
+                    name: 'board',
+                    component: MessageBoard
+                },
+                {
+                    path: '/about',
+                    name: 'about',
+                    component: About
+                },
+                {
+                    path: '/article/:id',
+                    name: 'articleDetail',
+                    component: ArticleDetail
+                },
+                {
+                    path: '/movie',
+                    name: 'movie',
+                    component: MovieSource
+                },
+                {
+                    path: '/movie/:id',
+                    name: 'movieDetail',
+                    component: MovieSourceDetail
+                }
+            ]
         },
         {
-            path: '/bibi',
-            name: 'bibi',
-            component: Bibi
+            path: '/h5/article/:id',
+            name: 'h5_articleDetail',
+            component: ArticleDetailH5
         },
         {
-            path: '/bibi/:id',
-            name: 'bibiDetail',
-            component: BibiDetail
-        },
-        {
-            path: '/betail',
-            name: 'betail',
-            component: BibiDetail
-        },
-        {
-            path: '/archives',
-            name: 'archives',
-            component: Archive
-        },
-        {
-            path: '/board',
-            name: 'board',
-            component: MessageBoard
-        },
-        {
-            path: '/about',
-            name: 'about',
+            path: '/h5/movie/:id',
+            name: 'h5_movieDetail',
+            component: MovieDetailH5
+        }, {
+            path: '/h5/about',
+            name: 'h5_about',
             component: About
-        },
-        {
-            path: '/article/:id',
-            name: 'articleDetail',
-            component: ArticleDetail
-        },
-        {
-            path: '/movie',
-            name: 'movie',
-            component: MovieSource
-        },
-        {
-            path: '/movie/:id',
-            name: 'movieDetail',
-            component: MovieSourceDetail
         }
     ]
 });
