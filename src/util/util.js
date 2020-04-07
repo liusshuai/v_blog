@@ -12,3 +12,7 @@ export function safeHtml(a) { //转译html代码
     }
     return s;
 }
+
+export function setDocTitle(title) {
+    document.title = title;
+}

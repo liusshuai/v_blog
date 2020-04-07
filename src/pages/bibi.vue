@@ -13,16 +13,17 @@
             <empty v-if="!list.length" text="还没有新行博" />
         </ul>
         <div class="get_more_btn" v-show="total > list.length">
-            <more-btn text="加载更多" />
+            <more-btn text="加载更多" @onClick="getMore" />
         </div>
     </div>
-</template>
+</template> 
 
 <script>
 import BibiBox from '@/components/bibiBox';
 import MoreBtn from '@/components/lButton';
 import Empty from '@/components/empty';
 import { getBibis } from '@/api/bibi';
+import { setDocTitle } from '@/util/util';
 export default {
     data () {
         return {
@@ -33,15 +34,16 @@ export default {
         };
     },
     mounted () {
+        setDocTitle('Bibi-刘帅的个人博客');
         this.getBibiList();
     },
     methods: {
-        getBibiList() {
-            getBibis({page: this.page}).then(res => {
+        getBibiList(page = this.page) {
+            getBibis({page}).then(res => {
                 if (res.code === 200) {
                     const { data, total } = res.data;
                     this.total = total;
-                    this.list = data.map(item => {
+                    this.list = this.list.concat(data.map(item => {
                         const day = new Date(item.pubtime.replace(/-/g, '/'));
                         item.year = day.getFullYear();
                         item.month = day.getMonth() + 1;
@@ -54,11 +56,14 @@ export default {
                         }
 
                         return item;
-                    });
+                    }));
                 }
 
                 this.loading = false;
             });
+        },
+        getMore() {
+            this.getBibiList(++this.page);
         }
     },
     components: {

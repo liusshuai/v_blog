@@ -34,6 +34,7 @@ import InfoBox from '@/components/infoBox';
 import SocialBox from '@/components/socialBox';
 import Empty from '@/components/empty';
 import { getArticles } from '@/api/article';
+import { setDocTitle } from '@/util/util';
 export default {
     name: 'home',
     data () {
@@ -46,6 +47,7 @@ export default {
         }
     },
     mounted () {
+        setDocTitle('首页-刘帅的个人博客');
         this.getArticle();
     },
     methods: {

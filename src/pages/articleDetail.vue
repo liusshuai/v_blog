@@ -63,6 +63,7 @@ import InfoBox from '@/components/infoBox';
 import SocialBox from '@/components/socialBox';
 import { getArticleDetail, getNear, likeArticle } from '@/api/article';
 import { getCommentByArticle, addComment } from '@/api/comment';
+import { setDocTitle } from '@/util/util';
 export default {
     data () {
         return {
@@ -102,7 +103,11 @@ export default {
             getArticleDetail(this.id).then(res => {
                 if (res.code === 200) {
                     this.data = res.data;
-                    document.title = res.data.title;
+                    if (res.data.outurl) {
+                        location.href = res.data.outurl;
+                        return;
+                    }
+                    setDocTitle(res.data.title);
                     document.getElementById('description').content = res.data.desc;
                 } else {
                     document.title = '文章不存在';

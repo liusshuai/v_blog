@@ -44,6 +44,7 @@
 import { getArchive } from '@/api/channel';
 import { getArticleByChannel, getArticleByTag, getArticles, getArticleByQ } from '@/api/article';
 import Empty from '@/components/empty';
+import { setDocTitle } from '@/util/util';
 export default {
     data () {
         return {
@@ -55,6 +56,7 @@ export default {
         };
     },
     mounted() {
+        setDocTitle('归档-刘帅的个人博客');
         this.getAllChannel();
         const type = this.$route.query.type;
         switch (type) {
@@ -246,6 +248,9 @@ export default {
         font-size: 16px;
         border-bottom: 1px dashed #ddd;
         transition: all .4s;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         &:hover{
             border-bottom: 1px dashed @primary_color;
         }

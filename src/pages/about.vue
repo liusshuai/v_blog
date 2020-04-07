@@ -56,6 +56,7 @@
 <script>
 import InfoBox from '@/components/infoBox';
 import SocialBox from '@/components/socialBox';
+import { setDocTitle } from '@/util/util';
 export default {
     data() {
         return {
@@ -63,6 +64,7 @@ export default {
         };
     },
     mounted() {
+        setDocTitle('关于-刘帅的个人博客');
         this.loading = false;
     },
     components: {

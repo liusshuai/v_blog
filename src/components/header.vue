@@ -65,6 +65,7 @@ export default {
             this.setBarPosition(e.target, 'click');
         },
         setBarPosition(e, type) {
+            if (e && e.localName !== 'a') return; // 防止activeBar错误指向
             if (e && type === 'click') {
                 this.positionW = e.clientWidth;
                 this.positionL = e.offsetLeft;

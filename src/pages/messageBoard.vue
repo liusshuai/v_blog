@@ -2,6 +2,7 @@
     <div class="board_page_wrap">
         <div class="info_box_wrap">
             <info-box />
+            <social-box />
         </div>
         <transition name="slide-fade">
             <div class="board_wrap" v-show="!loading">
@@ -19,9 +20,11 @@
 <script>
 import MessList from '@/components/messList';
 import CommentBox from '@/components/commentBox';
+import SocialBox from '@/components/socialBox';
 import Empty from '@/components/empty';
 import InfoBox from '@/components/infoBox';
 import { getCommentByBoard, addComment } from '@/api/comment';
+import { setDocTitle } from '@/util/util';
 export default {
     data() {
         return {
@@ -33,6 +36,7 @@ export default {
         };
     },
     mounted() {
+        setDocTitle('留言板-刘帅的个人博客');
         this.getBoards();
 
         this.reply = {};
@@ -85,7 +89,8 @@ export default {
         MessList, 
         CommentBox,
         Empty,
-        InfoBox
+        InfoBox,
+        SocialBox
     }
 }
 </script>
