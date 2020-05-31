@@ -27,7 +27,7 @@
                         <p class="pub_time">{{sub.date}} / {{sub.article.length}}篇文章</p>
                         <ul class="title_list">
                             <li v-for="a in sub.article"
-                                @click="gotoArticle(a.id)" :key="a.id">
+                                @click="gotoArticle(a)" :key="a.id">
                                 {{a.date}} {{a.title}}
                             </li>
                         </ul>
@@ -57,35 +57,41 @@ export default {
     },
     mounted() {
         setDocTitle('归档-刘帅的个人博客');
-        this.getAllChannel();
-        const type = this.$route.query.type;
-        switch (type) {
-            case 'channel':
-                this.getByChannel(this.$route.query.channel);
-                break;
-            case 'tag':
-                this.getByTag(this.$route.query.tag);
-                break;
-            case 'search':
-                this.getByKeyword();
-                break;
-            default:
-                break;
-        }
+        this.initPageData();
     },
     methods: {
-        getAllChannel() {
-            getArchive().then(res => {
-                if (res.code === 200) {
-                    const {articles, channels, tags} = res.data;
-                    this.channel = channels;
-                    this.tags = tags;
-                    this.articlesCount = articles.length;
+        initPageData() {
+            const type = this.$route.query.type;
+            switch (type) {
+                case 'channel':
+                    this.getByChannel(this.$route.query.channel);
+                    break;
+                case 'tag':
+                    this.getByTag(this.$route.query.tag);
+                    break;
+                case 'search':
+                    this.getByKeyword();
+                    break;
+                default:
+                    break;
+            }
+            this.getAllChannel(type);
+        },
+        async getAllChannel(type) {
+            const res = await getArchive();
+
+            if (res.code === 200) {
+                const types = ['channel', 'tag', 'search'];
+                const {articles, channels, tags} = res.data;
+                this.channel = channels;
+                this.tags = tags;
+                this.articlesCount = articles.length;
+                if (types.indexOf(type) === -1) {
                     this.initArticles(articles);
                 }
+            }
 
-                this.loading = false;
-            });
+            this.loading = false;
         },
         initArticles(list) {
             let _articleSubs = [];
@@ -144,8 +150,12 @@ export default {
                 this.loading = false;
             });
         },
-        gotoArticle(id) {
-            this.$router.push(`/article/${id}`);
+        gotoArticle(article) {
+            if (article.outurl) {
+                window.open(article.outurl);
+            } else {
+                this.$router.push(`/article/${article.id}`);
+            }
         }
     },
     components: {

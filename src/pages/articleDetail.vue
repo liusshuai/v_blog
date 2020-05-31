@@ -2,7 +2,9 @@
     <div class="article_detail_page">
         <div class="info_box_wrap">
             <info-box />
-            <social-box />
+            <div v-if="cates.length" class="article_catelogue_box" id="catelogue">
+                <catelogue :datas="cates" />
+            </div>
         </div>
         <transition name="slide-fade">
             <div class="article_detail_wrap" v-show="!loading">
@@ -15,7 +17,7 @@
                             @click="goChannel(data.channel.id)">#{{data.channel ? data.channel.name : ''}}#</span>
                         <a href="#comment">跳到评论</a>
                     </div>
-                    <div class="article_content">
+                    <div class="article_content" ref="content">
                         <md-to-html :content="data.content" />
                     </div>
                     <ul class="tags" v-show="tags">
@@ -57,10 +59,10 @@
 
 <script>
 import CommentBox from '@/components/commentBox';
+import Catelogue from '@/components/catelogue.vue';
 import MessList from '@/components/messList';
 import MdToHtml from '@/components/mdToHtml';
 import InfoBox from '@/components/infoBox';
-import SocialBox from '@/components/socialBox';
 import { getArticleDetail, getNear, likeArticle } from '@/api/article';
 import { getCommentByArticle, addComment } from '@/api/comment';
 import { setDocTitle } from '@/util/util';
@@ -75,7 +77,8 @@ export default {
             next: {},
             commentText: '',
             loading: true,
-            isLike: false
+            isLike: false,
+            cates: []
         };
     },
     computed: {
@@ -99,6 +102,50 @@ export default {
         this.reply = {};
     },
     methods: {
+        getCatelogue() {
+            const cates = [];
+            const main = this.$refs.content.children[0];
+            const content = main.children;
+            let cur = null;
+            let pre = null;
+            const titleMatch = (h) => {
+                return h.match(/[1-6]/)[0];
+            }
+            for (let i = 0; i < content.length; i++) {
+                const item = content[i];
+                const tagName = item.localName;
+                if (/^h[1-5]$/.test(tagName)) {
+                    if (item.innerHTML === "") continue;
+                    if (pre !== null) {
+                        pre.nextTop = item.offsetTop;
+                    }
+                    while (cur !== null && cur.tagName &&
+                        titleMatch(cur.tagName) >= titleMatch(tagName)) {
+                        cur = cur.parent || null;
+                    }
+                    const info = {
+                        tagName: tagName,
+                        text: item.innerHTML,
+                        top: item.offsetTop
+                    };
+                    if (cur === null) {
+                        cur = info;
+                        cates.push(cur);
+                    } else {
+                        if (!cur.children) {
+                            cur.children = [];
+                        }
+                        info.parent = cur;
+                        cur.children.push(info);
+                        cur = info;
+                    }
+                    pre = info;
+                }
+            }
+            this.cates = cates;
+            cur = null;
+            pre = null;
+        },
         getDetail() {
             getArticleDetail(this.id).then(res => {
                 if (res.code === 200) {
@@ -109,6 +156,9 @@ export default {
                     }
                     setDocTitle(res.data.title);
                     document.getElementById('description').content = res.data.desc;
+                    setTimeout(() => {
+                        this.getCatelogue();
+                    }, 1000);
                 } else {
                     document.title = '文章不存在';
                 }
@@ -198,7 +248,7 @@ export default {
         MessList,
         MdToHtml,
         InfoBox,
-        SocialBox
+        Catelogue
     }
 }
 </script>
@@ -338,6 +388,10 @@ export default {
 }
 .article_comment_box{
     .box_common_style;
+}
+.article_catelogue_box{
+    position: sticky;
+    top: 20px;
 }
 
 @media screen and (max-width: 768px) {

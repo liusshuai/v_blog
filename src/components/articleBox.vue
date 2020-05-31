@@ -4,6 +4,9 @@
             v-lazy:background-image="data.cover"
             class="article_side_cover" style="margin-right: 20px"></div>
         <div class="article_main">
+            <div v-if="data.cover && data.coverpos !== 0" class="article_top_cover_h5"
+                :style="`background: url(${data.cover}) center center; background-size: cover`">
+            </div>
             <div :class="data.cover && data.coverpos === 0 ? 'article_top_cover' : ''"
                 :style="data.cover && data.coverpos === 0
                     ? `background: url(${data.cover}) center center; background-size: cover` : ''">
@@ -34,9 +37,8 @@
                 </div>
                 <div class="handle_base">
                     <span>阅读({{data.views}})</span>
-                    <span>评论({{data.comments}})</span>
-                    <router-link v-if="!data.outurl" :to="'/article/' + data.id">全文»</router-link>
-                    <a v-else :href="data.outurl" target="_blank">全文»</a>
+                    <span v-if="!data.outurl">评论({{data.comments}})</span>
+                    <span @click="routeGo">{{data.outurl ? '点击查阅' : '全文'}}»</span>
                 </div>
             </div>
         </div>
@@ -47,6 +49,7 @@
 </template>
 
 <script>
+import { getArticleDetail } from '@/api/article';
 export default {
     props: {
         data: {
@@ -60,6 +63,16 @@ export default {
         },
         goToArchive(tag) {
             this.$router.push(`/archives?type=tag&tag=${tag}`);
+        },
+        routeGo() {
+            const {outurl, id} = this.data;
+            if (outurl) {
+                getArticleDetail(id);
+                window.open(outurl);
+            } else {
+                this.$router.push(`/article/${id}`);
+            }
+            
         }
     }
 }
@@ -87,7 +100,8 @@ export default {
     font-size: 12px;
     color: #aaa;
 }
-.article_top_cover{
+.article_top_cover,
+.article_top_cover_h5{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -107,6 +121,11 @@ export default {
     border-radius: 8px;
     background-position: center center;
     background-size: cover;
+}
+.article_top_cover_h5{
+    height: 120px;
+    margin-bottom: 10px;
+    display: none;
 }
 .time{
     display: flex;
@@ -148,7 +167,8 @@ export default {
 .handle_base{
     span{
         display: inline-block;
-        margin-right: 21px;
+        margin-left: 21px;
+        cursor: pointer;
     }
 }
 
@@ -173,6 +193,15 @@ export default {
     }
     .data_info{
         justify-content: flex-end;
+    }
+    .article_top_cover{
+        height: 120px;
+    }
+    .article_side_cover{
+        display: none;
+    }
+    .article_top_cover_h5{
+        display: block;
     }
 }
 </style>
